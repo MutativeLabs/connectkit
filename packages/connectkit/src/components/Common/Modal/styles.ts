@@ -649,6 +649,64 @@ export const DisclaimerBackground = styled(motion.div)`
   }
 `;
 
+export const Terms = styled(motion.div)`
+  display: flex;
+  align-items: center;
+`;
+
+export const TermsCheckbox = styled(motion.input).attrs({ type: "checkbox" })`
+  cursor: pointer;
+  position: relative;
+  
+  margin: 0;
+  appearance: none;
+  color: var(--ck-body-background);
+
+  min-width: 15px;
+  min-height: 15px;
+  width: 15px;
+  height: 15px;
+
+  border: 1.5px solid var(--ck-body-action-color);
+  border-radius: 4px;  
+  
+  &:checked {
+    border-color: var(--ck-focus-color);
+    background-color: var(--ck-focus-color);
+  }
+
+  &:checked::after {
+    content: "x";
+    position: absolute;
+    top: -2px;
+    left: 2px;
+    line-height: 1;
+    font-size: 14px;
+    font-weight: 700;
+  }
+`
+
+export const TermsWrapper = styled(motion.div)`
+  display: flex;
+  flex-direction: column;
+  
+  gap: 12px;
+  margin-bottom: 24px;
+
+  font-weight: 500;
+  font-size: 14px;
+
+  pointer-events: all;
+  z-index: 9;
+  width: 100%;
+  backface-visibility: hidden;
+
+  transition: width 200ms ease;
+
+  background: var(--ck-body-background);
+  box-shadow: var(--ck-body-disclaimer-box-shadow);
+`;
+
 export const SignInTooltip = styled(motion.div)`
   z-index: 2;
   position: absolute;

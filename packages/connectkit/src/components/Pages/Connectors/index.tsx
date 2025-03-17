@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo, useState } from 'react';
 import { useContext, routes } from '../../ConnectKit';
 
 import {
@@ -7,6 +7,7 @@ import {
   InfoBox,
   InfoBoxButtons,
 } from './styles';
+import TermsChecks from './terms';
 import {
   PageContent,
   Disclaimer,
@@ -27,9 +28,32 @@ const Wallets: React.FC = () => {
 
   const isMobile = useIsMobile();
 
+  const [termsAccepted, setTermsAccepted] = useState(
+    context.options?.terms ? context.options?.terms.map((_) => false) : []
+  );
+  const allAccepted = useMemo(
+    () => termsAccepted.every((t) => t === true),
+    [termsAccepted]
+  );
+
   return (
     <PageContent style={{ width: 312 }}>
-      <ConnectorList />
+      {context.options?.terms && context.options?.terms.length > 0 && (
+        <TermsChecks
+          termsAccepted={termsAccepted}
+          setTermsAccepted={setTermsAccepted}
+        />
+      )}
+
+      <div
+        style={
+          context.options?.terms?.length === 0 || allAccepted
+            ? {}
+            : { opacity: 0.5, pointerEvents: 'none' }
+        }
+      >
+        <ConnectorList />
+      </div>
 
       {isMobile ? (
         <>

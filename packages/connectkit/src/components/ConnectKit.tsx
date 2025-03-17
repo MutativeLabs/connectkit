@@ -89,6 +89,7 @@ export type ConnectKitOptions = {
   walletConnectName?: string;
   reducedMotion?: boolean;
   disclaimer?: ReactNode | string;
+  terms?: (ReactNode | string)[];
   bufferPolyfill?: boolean;
   customAvatar?: React.FC<CustomAvatarProps>;
   initialChainId?: number;
@@ -155,6 +156,7 @@ export const ConnectKitProvider = ({
     walletConnectName: undefined,
     reducedMotion: false,
     disclaimer: null,
+    terms: [],
     bufferPolyfill: true,
     customAvatar: undefined,
     initialChainId: chains?.[0]?.id,
